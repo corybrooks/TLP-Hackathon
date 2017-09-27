@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity  {
+public class RegistrationActivity extends AppCompatActivity {
 
     private EditText inputtedEmail;
     private EditText inputtedPassword;
@@ -24,7 +24,6 @@ public class LoginActivity extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private Button loginButton;
     private Button signupButton;
 
 
@@ -32,19 +31,18 @@ public class LoginActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registration);
 
-        loginButton = (Button) findViewById(R.id.SignIn);
+        signupButton = (Button) findViewById(R.id.SignUp);
         final String userEmail;
         final String userPassword;
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String userEmail = inputtedEmail.getText().toString();
                 String userPassword = inputtedPassword.getText().toString();
-                signIn(userEmail,userPassword);
-
+                signUp(userEmail,userPassword);
             }
         });
 
@@ -61,6 +59,7 @@ public class LoginActivity extends AppCompatActivity  {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
+                // ...
             }
         };
 
@@ -91,45 +90,16 @@ public class LoginActivity extends AppCompatActivity  {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
-
+                        // If sign in fails, display a message to the user. If sign in succeeds
+                        // the auth state listener will be notified and logic to handle the
+                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
-                            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-                            startActivity(intent);
                             finish();
                         }
                     }
                 });
     }
-
-    public void signIn(final String email, String password) {
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    public static final String TAG = "";
-
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "signInWithEmail", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-                            startActivity(intent);
-                        }
-
-                        // ...
-                    }
-                });
-    }
-
-
-
 }
