@@ -81,29 +81,6 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
-
-    public void signUp(final String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    public static final String TAG = "";
-
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
-
-
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                        } else {
-                            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                });
-    }
-
     public void signIn(final String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -122,6 +99,7 @@ public class LoginActivity extends AppCompatActivity  {
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+                            finish();
                             startActivity(intent);
                         }
 
