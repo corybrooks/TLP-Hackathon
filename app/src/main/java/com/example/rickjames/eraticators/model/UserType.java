@@ -19,4 +19,9 @@ public enum UserType implements Serializable {
     String getUserType() {
         return this.userType;
     }
+
+    @Override
+    public String toString() {
+        return getUserType();
+    }
 }

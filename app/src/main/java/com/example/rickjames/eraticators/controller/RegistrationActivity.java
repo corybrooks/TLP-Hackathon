@@ -5,11 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
+import com.example.rickjames.eraticators.model.User;
+import com.example.rickjames.eraticators.model.UserType;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,6 +25,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText inputtedEmail;
     private EditText inputtedPassword;
+    private EditText inputtedName;
+    private Spinner userSpinner;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -27,15 +34,18 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button signupButton;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        userSpinner = (Spinner) findViewById(R.id.userType);
         signupButton = (Button) findViewById(R.id.SignUp);
         final String userEmail;
         final String userPassword;
+
+
+
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +55,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 signUp(userEmail,userPassword);
             }
         });
+
+        ArrayAdapter<UserType> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, UserType.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        userSpinner.setAdapter(adapter);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -81,7 +96,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
 
-    public void signUp(final String email, String password) {
+    public void signUp(final String email, final String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     public static final String TAG = "";
@@ -97,11 +112,24 @@ public class RegistrationActivity extends AppCompatActivity {
                             Toast.makeText(RegistrationActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         } else {
+                            createUser(email, password);
                             finish();
                         }
                     }
                 });
     }
 
+    public void createUser(String email, String password) {
+        final String userName;
+        final UserType newUserType;
+        inputtedName = (EditText) findViewById(R.id.Names);
+        userName = inputtedName.getText().toString();
+        userSpinner = (Spinner) findViewById(R.id.userType);
+        newUserType = (UserType) userSpinner.getSelectedItem();
 
+
+        User newUser = new User(userName, newUserType, email, password);
+
+
+    }
 }
