@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.rickjames.eraticators.RegistrationActivity">
+    tools:context="com.example.rickjames.eraticators.controller.RegistrationActivity">
 
 
     <Button
@@ -18,13 +18,32 @@
         android:text="Register" />
 
     <EditText
-        android:id="@+id/inputtedEmail"
+        android:id="@+id/Names"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:ems="10"
+        android:hint="Name" />
+
+    <Spinner
+        android:id="@+id/userType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Names"
+        android:layout_alignStart="@+id/Names"
+        android:layout_alignLeft="@+id/Names" />
+
+
+    <EditText
+        android:id="@+id/inputtedEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userType"
+        android:ems="10"
         android:hint="Email"
+        android:layout_alignStart="@+id/userType"
+        android:layout_alignLeft="@+id/userType"
         android:inputType="textEmailAddress" />
 
     <EditText
