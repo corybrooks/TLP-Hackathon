@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -30,6 +32,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference userRef = database.getReference("USER_TABLE");
+
+
 
     private Button signupButton;
 
@@ -126,10 +133,26 @@ public class RegistrationActivity extends AppCompatActivity {
         userName = inputtedName.getText().toString();
         userSpinner = (Spinner) findViewById(R.id.userType);
         newUserType = (UserType) userSpinner.getSelectedItem();
-
-
         User newUser = new User(userName, newUserType, email, password);
+        addUserToDatabase(newUser);
+    }
 
+    public void addUserToDatabase(User newUser) {
+        FirebaseUser userID = FirebaseAuth.getInstance().getCurrentUser();
+        if (userID != null) {
+            DatabaseReference childRef = userRef.child(userID.getUid());
 
+            DatabaseReference uidChildRef1 = childRef.child("userName");
+            uidChildRef1.setValue(newUser.getName());
+
+            DatabaseReference uidChildRef2 = childRef.child("userType");
+            uidChildRef2.setValue(newUser.getUser().toString());
+
+            DatabaseReference uidChildRef3 = childRef.child("userEmail");
+            uidChildRef3.setValue(newUser.getEmail());
+
+            DatabaseReference uidChildRef4 = childRef.child("userPassword");
+            uidChildRef4.setValue(newUser.getPassword());
+        }
     }
 }
