@@ -69,6 +69,7 @@ public class LoginActivity extends AppCompatActivity  {
         inputtedPassword = (EditText) findViewById(R.id.inputtedPassword);
     }
 
+    @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
@@ -82,6 +83,13 @@ public class LoginActivity extends AppCompatActivity  {
         }
     }
 
+    /**
+     * Authenticates the users account using the email and password.
+     * If information is correct it signs in the user in and calls the
+     * UserActivity.
+     * @param email The users email.
+     * @param password The users password.
+     */
     public void signIn(final String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -108,7 +116,4 @@ public class LoginActivity extends AppCompatActivity  {
                     }
                 });
     }
-
-
-
 }

@@ -89,6 +89,7 @@ public class RegistrationActivity extends AppCompatActivity {
         inputtedPassword = (EditText) findViewById(R.id.inputtedPassword);
     }
 
+    @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
@@ -102,7 +103,11 @@ public class RegistrationActivity extends AppCompatActivity {
         }
     }
 
-
+    /**
+     * Creates the new user account with email and password.
+     * @param email The new users email.
+     * @param password The new users password
+     */
     public void signUp(final String email, final String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -126,6 +131,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Creates an instance of the user object.
+     * @param email The new users email.
+     * @param password The new users password.
+     */
     public void createUser(String email, String password) {
         final String userName;
         final UserType newUserType;
@@ -137,6 +147,10 @@ public class RegistrationActivity extends AppCompatActivity {
         addUserToDatabase(newUser);
     }
 
+    /**
+     * Adds the new user's information to the database.
+     * @param newUser The instance of the new user.
+     */
     public void addUserToDatabase(User newUser) {
         FirebaseUser userID = FirebaseAuth.getInstance().getCurrentUser();
         if (userID != null) {

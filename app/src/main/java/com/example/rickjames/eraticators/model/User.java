@@ -44,6 +44,11 @@ public class User {
         this.password = password;
     }
 
+    /**
+     * Finds the position of the user spinner
+     * @param code The value of the current selection of the user spinner.
+     * @return 0
+     */
     public static int findPosition(String code) {
         int i = 0;
         while (i < legalUser.size()) {
@@ -52,5 +57,4 @@ public class User {
         }
         return 0;
     }
-
 }
