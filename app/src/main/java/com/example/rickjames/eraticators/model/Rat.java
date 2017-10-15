@@ -1,11 +1,16 @@
 package com.example.rickjames.eraticators.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by RickJames on 10/5/2017.
  */
 
-public class Rat {
+public class Rat implements Parcelable {
     String key, date, locType, zip, address, city, borough, latitude, longitude;
+
+    public Rat() { }
 
     public Rat(String key, String date, String locType, String zip, String address,
                String city, String borough, String latitude, String longitude) {
@@ -92,4 +97,42 @@ public class Rat {
         return longitude;
     }
 
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeString(key);
+        out.writeString(date);
+        out.writeString(locType);
+        out.writeString(zip);
+        out.writeString(address);
+        out.writeString(city);
+        out.writeString(borough);
+        out.writeString(latitude);
+        out.writeString(longitude);
+    }
+
+    public static final Parcelable.Creator<Rat> CREATOR
+            = new Parcelable.Creator<Rat>() {
+        public Rat createFromParcel(Parcel in) {
+            return new Rat(in);
+        }
+
+        public Rat[] newArray(int size) {
+            return new Rat[size];
+        }
+    };
+
+    private Rat(Parcel in) {
+        key = in.readString();
+        date = in.readString();
+        locType = in.readString();
+        zip = in.readString();
+        address = in.readString();
+        city = in.readString();
+        borough = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+    }
 }

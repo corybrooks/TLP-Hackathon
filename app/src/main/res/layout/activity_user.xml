@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.rickjames.eraticators.controller.UserActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/RatList"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:scrollbars="vertical" />
+
     <Button
         android:id="@+id/SignOut"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Sign Out"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="95dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
