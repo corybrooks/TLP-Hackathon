@@ -73,8 +73,8 @@ public class UserActivity extends AppCompatActivity {
 
                 final ratViewHolder viewHolder = new ratViewHolder(view);
 
-                view.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View view) {
+               // view.setOnClickListener(new View.OnClickListener() {
+                 //   public void onClick(View view) {
 
 //                        DatabaseReference passRef = firebaseRecyclerAdapter
 //                                .getRef(viewHolder.getAdapterPosition());
@@ -209,8 +209,8 @@ public class UserActivity extends AppCompatActivity {
 //                        Intent intent = new Intent(UserActivity.this, RatActivity.class);
 //                        intent.putExtras(b);
 //                        startActivity(intent);
-                    }
-                });
+                 //   }
+              //  });
                 return viewHolder;
             }
 
@@ -255,6 +255,10 @@ public class UserActivity extends AppCompatActivity {
         firebaseRecyclerAdapter.stopListening();
     }
 
+    /**
+     * View holder for rat class. This is used by the firebaseRecyclerAdapter to
+     * bind the rat_name to the cards in the RecyclerView.
+     */
     public static class ratViewHolder extends RecyclerView.ViewHolder {
         private TextView ratName;
         private View mView;
@@ -265,6 +269,10 @@ public class UserActivity extends AppCompatActivity {
             mView = itemView;
         }
 
+        /**
+         * This is necessary in order to recieve the view and pass the model to the new view!!
+         * @return the view
+         */
         public View getView() {
             return mView;
         }

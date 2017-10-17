@@ -12,10 +12,18 @@ public enum UserType implements Serializable {
 
     private String userType;
 
+    /**
+     * Contructor for UserType enum
+     * @param userType sets the user's initial type
+     */
     UserType(String userType) {
         this.userType = userType;
     }
 
+    /**
+     *
+     * @return returns the user's type
+     */
     String getUserType() {
         return this.userType;
     }

@@ -16,7 +16,13 @@ public class User {
 
     public static List<UserType> legalUser = Arrays.asList(UserType.values());
 
-
+    /**
+     * Contructor to create a new user
+     * @param name The name of the new user
+     * @param user the userType of the new user (User or Admin)
+     * @param email the email of the new user
+     * @param password the password of the new user
+     */
     public User(String name, UserType user, String email, String password) {
         this.name = name;
         this.user = user;
@@ -24,22 +30,58 @@ public class User {
         this. password = password;
     }
 
+    /**
+     *
+     * @return the name of the user
+     */
     public String getName() { return this.name; }
+
+    /**
+     *
+     * @param name the name of the user
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *
+     * @return the type of the user
+     */
     public UserType getUser() { return this.user; }
+
+    /**
+     *
+     * @return the type of the user
+     */
     public void setUser(UserType user) {
         this.user = user;
     }
 
+    /**
+     *
+     * @return the email of the user
+     */
     public String getEmail() { return this.email; }
+
+    /**
+     *
+     * @return the email of the user
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     *
+     * @return the password of the user
+     */
     public String getPassword() { return this.password; }
+
+    /**
+     *
+     * @return the password of the user
+     */
     public void setPassword(String password) {
         this.password = password;
     }
