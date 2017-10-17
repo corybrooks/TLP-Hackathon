@@ -8,15 +8,17 @@ import android.os.Parcelable;
  */
 
 public class Rat implements Parcelable {
-    String key, date, locType, zip, address, city, borough, latitude, longitude;
+
+
+    private String name, date, type, zip, address, city, borough, latitude, longitude;
 
     public Rat() { }
 
-    public Rat(String key, String date, String locType, String zip, String address,
+    public Rat(String name, String date, String type, String zip, String address,
                String city, String borough, String latitude, String longitude) {
-        this.key = key;
+        this.name = name;
         this.date = date;
-        this.locType = locType;
+        this.type = type;
         this.zip = zip;
         this.address = address;
         this.city = city;
@@ -25,16 +27,16 @@ public class Rat implements Parcelable {
         this.longitude = longitude;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setDate(String date) {
         this.date = date;
     }
 
-    public void setLocType(String locType) {
-        this.locType = locType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setZip(String zip) {
@@ -61,16 +63,16 @@ public class Rat implements Parcelable {
         this.longitude = longitude;
     }
 
-    public String getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 
     public String getDate() {
         return date;
     }
 
-    public String getLocType() {
-        return locType;
+    public String getType() {
+        return type;
     }
 
     public String getZip() {
@@ -102,9 +104,9 @@ public class Rat implements Parcelable {
     }
 
     public void writeToParcel(Parcel out, int flags) {
-        out.writeString(key);
+        out.writeString(name);
         out.writeString(date);
-        out.writeString(locType);
+        out.writeString(type);
         out.writeString(zip);
         out.writeString(address);
         out.writeString(city);
@@ -125,9 +127,9 @@ public class Rat implements Parcelable {
     };
 
     private Rat(Parcel in) {
-        key = in.readString();
+        name = in.readString();
         date = in.readString();
-        locType = in.readString();
+        type = in.readString();
         zip = in.readString();
         address = in.readString();
         city = in.readString();
