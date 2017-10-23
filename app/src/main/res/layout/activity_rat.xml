@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     tools:context="com.example.rickjames.eraticators.controller.RatActivity">
 
+    <LinearLayout
+        android:id="@+id/NameTagLayout"
 
+    android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+        <TextView
+    android:id="@+id/NameTag"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:ems="10" />
     <TextView
         android:id="@+id/Name"
         android:layout_width="wrap_content"
@@ -14,15 +26,17 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:ems="10" />
+</LinearLayout>
+
 
     <TextView
         android:id="@+id/Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/Name"
-        android:layout_alignStart="@+id/Name"
-        android:layout_alignLeft="@+id/Name"
+        android:layout_below="@id/NameTagLayout"
+        android:layout_alignStart="@+id/NameTagLayout"
+        android:layout_alignLeft="@+id/NameTagLayout"
         android:ems="10" />
 
     <TextView

@@ -7,6 +7,8 @@ import android.widget.TextView;
 import com.example.rickjames.eraticators.R;
 import com.example.rickjames.eraticators.model.Rat;
 
+import org.w3c.dom.Text;
+
 public class RatActivity extends AppCompatActivity {
 
 //    key, date, type, zip, address, city, borough, latitude, Longitude
@@ -20,6 +22,7 @@ public class RatActivity extends AppCompatActivity {
     private TextView borough;
     private TextView latitude;
     private TextView longitude;
+    private TextView nameTag;
 
     private Bundle b;
 
@@ -37,6 +40,9 @@ public class RatActivity extends AppCompatActivity {
         borough = (TextView) findViewById(R.id.Borough);
         latitude = (TextView) findViewById(R.id.Latitude);
         longitude = (TextView) findViewById(R.id.Longitude);
+
+        nameTag = (TextView) findViewById(R.id.NameTag);
+        nameTag.setText("Name: ");
 
         b = this.getIntent().getExtras();
         if (b != null) {

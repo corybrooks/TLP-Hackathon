@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rickjames.eraticators.controller.AddRatActivity">
+
+    <Button
+    android:id="@+id/addRat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="85dp"
+    android:layout_marginStart="72dp"
+    android:layout_marginLeft="72dp"
+    android:text="Add"
+    android:layout_alignParentBottom="true"
+    android:layout_marginTop="85dp"
+    android:layout_below="@+id/inputtedZip"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="85dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:text="Cancel"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="85dp"
+        android:layout_toRightOf="@+id/addRat"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/inputtedAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputtedBorough"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedAddress"
+        android:layout_alignLeft="@+id/inputtedAddress"
+        android:layout_below="@+id/inputtedAddress"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Borough"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputtedCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedBorough"
+        android:layout_alignLeft="@+id/inputtedBorough"
+        android:layout_below="@+id/inputtedBorough"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputtedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedCity"
+        android:layout_alignLeft="@+id/inputtedCity"
+        android:layout_below="@+id/inputtedCity"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputtedLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedDate"
+        android:layout_alignLeft="@+id/inputtedDate"
+        android:layout_below="@+id/inputtedDate"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Latitude"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputtedLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedLatitude"
+        android:layout_alignLeft="@+id/inputtedLatitude"
+        android:layout_below="@+id/inputtedLatitude"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Longitude"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputtedName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedLongitude"
+        android:layout_alignLeft="@+id/inputtedLongitude"
+        android:layout_below="@+id/inputtedLongitude"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text" />
+
+
+    <EditText
+        android:id="@+id/inputtedType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedName"
+        android:layout_alignLeft="@+id/inputtedName"
+        android:layout_below="@+id/inputtedName"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Type"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/inputtedZip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/inputtedType"
+        android:layout_alignLeft="@+id/inputtedType"
+        android:layout_below="@+id/inputtedType"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Zip"
+        android:inputType="text" />
+</RelativeLayout>
+</ScrollView>
