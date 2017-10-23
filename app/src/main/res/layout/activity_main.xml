@@ -29,5 +29,12 @@
         android:layout_toRightOf="@+id/SignIn"
         android:text="Sign Up" />
 
+    <com.google.android.gms.common.SignInButton
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/GoogleButton"/>
+
+
+
 
 </RelativeLayout>
