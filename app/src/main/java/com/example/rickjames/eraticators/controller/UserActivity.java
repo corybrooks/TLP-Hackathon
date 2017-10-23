@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
 import com.example.rickjames.eraticators.model.Rat;
@@ -57,6 +58,8 @@ public class UserActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
@@ -128,6 +131,9 @@ public class UserActivity extends AppCompatActivity {
         super.onStop();
         firebaseRecyclerAdapter.stopListening();
     }
+
+
+
 
     /**
      * View holder for rat class. This is used by the firebaseRecyclerAdapter to

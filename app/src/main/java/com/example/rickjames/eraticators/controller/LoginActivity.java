@@ -109,6 +109,7 @@ public class LoginActivity extends AppCompatActivity  {
                         } else {
                             Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                             finish();
+                            Toast.makeText(LoginActivity.this, "Welcome "+ email, Toast.LENGTH_LONG).show();
                             startActivity(intent);
                         }
 
