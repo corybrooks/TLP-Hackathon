@@ -1,13 +1,25 @@
 package com.example.rickjames.eraticators.controller;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
 import com.example.rickjames.eraticators.model.Rat;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.w3c.dom.Text;
+
+import java.util.Locale;
 
 public class RatActivity extends AppCompatActivity {
 
@@ -23,7 +35,7 @@ public class RatActivity extends AppCompatActivity {
     private TextView latitude;
     private TextView longitude;
     private TextView nameTag;
-
+    private Button map;
     private Bundle b;
 
     @Override
@@ -40,13 +52,15 @@ public class RatActivity extends AppCompatActivity {
         borough = (TextView) findViewById(R.id.Borough);
         latitude = (TextView) findViewById(R.id.Latitude);
         longitude = (TextView) findViewById(R.id.Longitude);
+        map = (Button) findViewById(R.id.MapButton);
 
         nameTag = (TextView) findViewById(R.id.NameTag);
         nameTag.setText("Name: ");
 
+        Rat newRat = null;
         b = this.getIntent().getExtras();
         if (b != null) {
-            Rat newRat = b.getParcelable("rat");
+            newRat = b.getParcelable("rat");
             name.setText(newRat.getName());
             date.setText(newRat.getDate());
             type.setText(newRat.getType());
@@ -57,5 +71,20 @@ public class RatActivity extends AppCompatActivity {
             latitude.setText(newRat.getLatitude());
             longitude.setText(newRat.getLongitude());
         }
+
+        final Rat finalNewRat = newRat;
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String uri = String.format(Locale.ENGLISH, "geo:%f,%f", Float.parseFloat(finalNewRat.getLatitude()), Float.parseFloat(finalNewRat.getLongitude()));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:<" + Float.parseFloat(finalNewRat.getLatitude())  +
+                        ">,<" + Float.parseFloat(finalNewRat.getLongitude()) + ">?q=<" +
+                        Float.parseFloat(finalNewRat.getLatitude())  + ">,<" +
+                        Float.parseFloat(finalNewRat.getLongitude()) + ">(Rat: " + finalNewRat.getName() + ")"));
+
+                startActivity(intent);
+            }
+        });
     }
 }

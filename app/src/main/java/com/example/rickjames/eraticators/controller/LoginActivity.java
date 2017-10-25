@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity  {
 
+    private static final String TAG = "";
     private EditText inputtedEmail;
     private EditText inputtedPassword;
 
@@ -30,12 +31,14 @@ public class LoginActivity extends AppCompatActivity  {
 
     private Button loginButton;
     private Button signupButton;
+    private Button forgotButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loginButton = (Button) findViewById(R.id.SignIn);
+        forgotButton = (Button) findViewById(R.id.ForgotPassword);
         final String userEmail;
         final String userPassword;
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +48,24 @@ public class LoginActivity extends AppCompatActivity  {
                 String userEmail = inputtedEmail.getText().toString();
                 String userPassword = inputtedPassword.getText().toString();
                 signIn(userEmail,userPassword);
+
+            }
+        });
+
+        forgotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().sendPasswordResetEmail(inputtedEmail.getText().toString())
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "Email sent.");
+                                }
+                            }
+                        });
+                Toast.makeText(LoginActivity.this,"Password reset email sent to "+ inputtedEmail.getText().toString(),
+                        Toast.LENGTH_SHORT).show();
 
             }
         });
