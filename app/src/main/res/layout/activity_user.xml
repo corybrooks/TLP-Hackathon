@@ -10,6 +10,7 @@
         android:id="@+id/RatList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/endDate"
         android:scrollbars="vertical" />
 
     <Button
@@ -27,5 +28,46 @@
         android:text="Add Rat"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/updateRats"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Update Rats"
+        android:layout_toRightOf="@+id/AddRat"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/startDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select start date"
+        android:onClick="showDatePickerDialog" />
+
+    <EditText
+        android:id="@+id/startDateText"
+        android:clickable="true"
+        android:editable="false"
+        android:hint="Start Date"
+        android:layout_toRightOf="@+id/startDate"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
+    <Button
+        android:id="@+id/endDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startDate"
+        android:text="Select end date"
+        android:onClick="showDatePickerDialog" />
+
+    <EditText
+        android:id="@+id/endDateText"
+        android:clickable="true"
+        android:editable="false"
+        android:hint="End Date"
+        android:layout_toRightOf="@+id/endDate"
+        android:layout_below="@+id/startDateText"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" />
 
 </RelativeLayout>

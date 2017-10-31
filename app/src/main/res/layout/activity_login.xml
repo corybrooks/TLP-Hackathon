@@ -18,6 +18,20 @@
         android:layout_marginTop="85dp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/ForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="85dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:text="Forgot Password"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/SignIn"
+        android:layout_toRightOf="@+id/SignIn"
+        android:layout_marginTop="85dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/inputtedEmail"

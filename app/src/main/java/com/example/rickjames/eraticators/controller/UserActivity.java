@@ -1,5 +1,8 @@
 package com.example.rickjames.eraticators.controller;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +29,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class UserActivity extends AppCompatActivity {
 
     private Button signOutButton;
     private Button addRatButton;
+    private Button startDateButton;
+    private EditText startDateText;
+    private Button endDateButton;
+    private EditText endDateText;
+    private Button updateRatsButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -69,6 +82,12 @@ public class UserActivity extends AppCompatActivity {
 
         signOutButton = (Button) findViewById(R.id.SignOut);
         addRatButton = (Button) findViewById(R.id.AddRat);
+        updateRatsButton = (Button) findViewById(R.id.updateRats);
+
+        startDateButton = (Button) findViewById(R.id.startDate);
+        startDateText = (EditText) findViewById(R.id.startDateText);
+        endDateButton = (Button) findViewById(R.id.endDate);
+        endDateText = (EditText) findViewById(R.id.endDateText);
 
         firebaseRecyclerAdapter =  new FirebaseRecyclerAdapter<Rat, ratViewHolder>(options) {
             @Override
@@ -118,7 +137,105 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        updateRatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                query = ratRef.
+                        orderByChild("date").
+                        startAt(startDateText.getText().toString() + " 12:00:00 AM").
+                        endAt(endDateText.getText().toString() + " 11:59:59 PM").limitToLast(20);
+
+                options =
+                        new FirebaseRecyclerOptions.Builder<Rat>()
+                                .setQuery(query, Rat.class)
+                                .build();
+
+                firebaseRecyclerAdapter =  new FirebaseRecyclerAdapter<Rat, ratViewHolder>(options) {
+                    @Override
+                    public ratViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                        // Create a new instance of the ViewHolder, in this case we are using a custom
+                        // layout called R.layout.message for each item
+                        View view = LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.rat_row, parent, false);
+
+                        return new ratViewHolder(view);
+                    }
+
+                    @Override
+                    protected void onBindViewHolder(ratViewHolder holder, int position, final Rat model) {
+                        holder.ratName.setText(model.getName());
+                        View v = holder.getView();
+                        v.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Bundle b = new Bundle();
+                                b.putParcelable("rat", model);
+                                Intent intent = new Intent(UserActivity.this, RatActivity.class);
+                                intent.putExtras(b);
+                                startActivity(intent);
+                            }
+                        });
+
+                    }
+                };
+
+                mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+                //firebaseRecyclerAdapter.notifyDataSetChanged();
+            }
+        });
+
+
+        final Calendar myCalendar = Calendar.getInstance();
+        final String[] whichDate = {null};
+        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+            private void updateLabel() {
+                String myFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                if (whichDate[0] == "START") {
+                    startDateText.setText(sdf.format(myCalendar.getTime()));
+                }
+                else {
+                    endDateText.setText(sdf.format(myCalendar.getTime()));
+                }
+
+            }
+
+        };
+        startDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whichDate[0] = "START";
+                new DatePickerDialog(UserActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        endDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whichDate[0] = "END";
+                new DatePickerDialog(UserActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
     }
+
+
 
     @Override
     protected void onStart() {
@@ -131,8 +248,6 @@ public class UserActivity extends AppCompatActivity {
         super.onStop();
         firebaseRecyclerAdapter.stopListening();
     }
-
-
 
 
     /**
@@ -157,4 +272,6 @@ public class UserActivity extends AppCompatActivity {
             return mView;
         }
     }
+
+
 }
