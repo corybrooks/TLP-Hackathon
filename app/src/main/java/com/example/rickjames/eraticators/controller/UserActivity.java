@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,7 @@ public class UserActivity extends AppCompatActivity {
             .getReference().child("RAT_TABLE");
 
     private FirebaseRecyclerAdapter<Rat, ratViewHolder> firebaseRecyclerAdapter;
+    private FirebaseRecyclerAdapter<Rat, ratViewHolder> updateAdapter;
 
     private Query query = FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(20);
 
@@ -63,6 +65,9 @@ public class UserActivity extends AppCompatActivity {
             new FirebaseRecyclerOptions.Builder<Rat>()
                     .setQuery(query, Rat.class)
                     .build();
+
+    private Query filtQuery;
+    private FirebaseRecyclerOptions<Rat> filtOptions;
 
     private String passName, passDate, passType, passZip, passAddress, passCity, passBorough, passLatitude, passLongitude;
 
@@ -143,15 +148,33 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 query = ratRef.
                         orderByChild("date").
-                        startAt(startDateText.getText().toString() + " 12:00:00 AM").
-                        endAt(endDateText.getText().toString() + " 11:59:59 PM").limitToLast(20);
+                        startAt(startDateText.getText().toString()).
+                        endAt(endDateText.getText().toString()).limitToLast(20);
+
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                                Log.i(snap.getKey(), "Here");
+                            }
+                        } else {
+                            Log.i("no exist", "no Exist");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 options =
                         new FirebaseRecyclerOptions.Builder<Rat>()
                                 .setQuery(query, Rat.class)
                                 .build();
 
-                firebaseRecyclerAdapter =  new FirebaseRecyclerAdapter<Rat, ratViewHolder>(options) {
+                updateAdapter =  new FirebaseRecyclerAdapter<Rat, ratViewHolder>(options) {
                     @Override
                     public ratViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                         // Create a new instance of the ViewHolder, in this case we are using a custom
@@ -176,14 +199,13 @@ public class UserActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
-
                     }
                 };
-
-                mRecyclerView.setAdapter(firebaseRecyclerAdapter);
+                mRecyclerView.setAdapter(updateAdapter);
                 //firebaseRecyclerAdapter.notifyDataSetChanged();
             }
         });
+
 
 
         final Calendar myCalendar = Calendar.getInstance();
