@@ -25,7 +25,8 @@
             android:name=".controller.RegistrationActivity"
             android:noHistory="true" />
         <activity android:name=".controller.RatActivity" />
-        <activity android:name=".controller.AddRatActivity"></activity>
+        <activity android:name=".controller.AddRatActivity" />
+        <activity android:name=".controller.GraphActivity"></activity>
     </application>
 
 </manifest>

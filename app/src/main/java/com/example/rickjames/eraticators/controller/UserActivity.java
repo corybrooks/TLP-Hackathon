@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +45,7 @@ public class UserActivity extends AppCompatActivity {
     private Button endDateButton;
     private EditText endDateText;
     private Button updateRatsButton;
+    private boolean first;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -59,7 +61,7 @@ public class UserActivity extends AppCompatActivity {
     private FirebaseRecyclerAdapter<Rat, ratViewHolder> firebaseRecyclerAdapter;
     private FirebaseRecyclerAdapter<Rat, ratViewHolder> updateAdapter;
 
-    private Query query = FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(20);
+    private Query query = FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(30);
 
     private FirebaseRecyclerOptions<Rat> options =
             new FirebaseRecyclerOptions.Builder<Rat>()
@@ -77,6 +79,11 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
+        String x = getIntent().getStringExtra("newFirst");
+        if (getIntent().getStringExtra("newFirst") == "false") {
+                FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(5);
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
@@ -144,19 +151,32 @@ public class UserActivity extends AppCompatActivity {
         });
 
         updateRatsButton.setOnClickListener(new View.OnClickListener() {
+            ArrayList<String> ratPosList = new ArrayList<String>();
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(UserActivity.this, GraphActivity.class);
+                finish();
+                startActivity(intent);
+                return;
+
+
+
+
+                /*final ArrayList<String> ratPosList = new ArrayList<String>();
+
                 query = ratRef.
                         orderByChild("date").
                         startAt(startDateText.getText().toString()).
-                        endAt(endDateText.getText().toString()).limitToLast(20);
+                        endAt(endDateText.getText().toString()).limitToLast(30);
 
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
                             for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                                Log.i(snap.getKey(), "Here");
+                                ratPosList.add(snap.getKey());
+                                Log.i("begin:"+snap.getKey(), "Here");
                             }
                         } else {
                             Log.i("no exist", "no Exist");
@@ -201,7 +221,7 @@ public class UserActivity extends AppCompatActivity {
                         });
                     }
                 };
-                mRecyclerView.setAdapter(updateAdapter);
+                mRecyclerView.setAdapter(updateAdapter);*/
                 //firebaseRecyclerAdapter.notifyDataSetChanged();
             }
         });

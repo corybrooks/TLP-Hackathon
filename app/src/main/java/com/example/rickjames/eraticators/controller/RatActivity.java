@@ -70,6 +70,7 @@ public class RatActivity extends AppCompatActivity {
         }
         final Rat finalNewRat = newRat;
         map.setOnClickListener(new View.OnClickListener() {
+            //Displays a rat's information as a pin on google maps
             @Override
             public void onClick(View view) {
                 try {
@@ -77,7 +78,7 @@ public class RatActivity extends AppCompatActivity {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:<" + Float.parseFloat(finalNewRat.getLatitude())  +
                             ">,<" + Float.parseFloat(finalNewRat.getLongitude()) + ">?q=<" +
                             Float.parseFloat(finalNewRat.getLatitude())  + ">,<" +
-                            Float.parseFloat(finalNewRat.getLongitude()) + ">(Rat: " + finalNewRat.getName() + ")"));
+                            Float.parseFloat(finalNewRat.getLongitude()) + ">(Rat: " + finalNewRat.getName() + ") Address: " + finalNewRat.getAddress()));
 
                     startActivity(intent);
                 } catch (Exception e) {
