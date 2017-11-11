@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -71,11 +72,24 @@ public class AddRatActivity extends AppCompatActivity {
                 String nameText = name.getText().toString();
                 String typeText = type.getText().toString();
                 String zipText = zip.getText().toString();
-                addNewRat(addressText,boroughText,cityText,dateText,latitudeText,longitudeText,nameText,typeText,zipText);
-                Intent intent = new Intent(AddRatActivity.this, UserActivity.class);
-                finish();
-                startActivity(intent);
+                if (addressText.equals("") || boroughText.equals("") || cityText.equals("") ||
+                        dateText.equals("") || latitudeText.equals("") ||
+                        longitudeText.equals("") || nameText.equals("") || typeText.equals("")
+                        || typeText.equals("") || zipText.equals("")) {
+                    Toast.makeText(AddRatActivity.this, "One Value is empty" , Toast.LENGTH_LONG).show();
+                } else {
+                    try {
+                        float lat = Float.parseFloat(latitudeText);
+                        float lon = Float.parseFloat(longitudeText);
+                        addNewRat(addressText,boroughText,cityText,dateText,latitudeText,longitudeText,nameText,typeText,zipText);
+                        Intent intent = new Intent(AddRatActivity.this, UserActivity.class);
+                        finish();
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Toast.makeText(AddRatActivity.this, "Error attempting to view rat on map. Are latitude and longitude valid?" , Toast.LENGTH_LONG).show();
 
+                    }
+                }
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {
