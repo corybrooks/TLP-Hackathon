@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.rickjames.eraticators.controller.AddRatActivity">
 
     <Button
@@ -17,7 +17,7 @@
     android:layout_marginBottom="85dp"
     android:layout_marginStart="72dp"
     android:layout_marginLeft="72dp"
-    android:text="Add"
+    android:text="@string/Add"
     android:layout_alignParentBottom="true"
     android:layout_marginTop="85dp"
     android:layout_below="@+id/inputtedZip"

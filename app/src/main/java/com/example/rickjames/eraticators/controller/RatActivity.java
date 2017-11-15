@@ -11,9 +11,6 @@ import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
 import com.example.rickjames.eraticators.model.Rat;
-import com.google.firebase.auth.FirebaseAuth;
-
-import org.w3c.dom.Text;
 
 import java.util.Locale;
 
@@ -21,41 +18,28 @@ public class RatActivity extends AppCompatActivity {
 
 //    key, date, type, zip, address, city, borough, latitude, Longitude
 
-    private TextView name;
-    private TextView date;
-    private TextView type;
-    private TextView zip;
-    private TextView address;
-    private TextView city;
-    private TextView borough;
-    private TextView latitude;
-    private TextView longitude;
-    private TextView nameTag;
-    private Button map;
-
-    private Bundle b;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rat);
 
-        name = (TextView) findViewById(R.id.Name);
-        date = (TextView) findViewById(R.id.Date);
-        type = (TextView) findViewById(R.id.Type);
-        zip = (TextView) findViewById(R.id.Zip);
-        address = (TextView) findViewById(R.id.Address);
-        city = (TextView) findViewById(R.id.City);
-        borough = (TextView) findViewById(R.id.Borough);
-        latitude = (TextView) findViewById(R.id.Latitude);
-        longitude = (TextView) findViewById(R.id.Longitude);
+        TextView name = findViewById(R.id.Name);
+        TextView date = findViewById(R.id.Date);
+        TextView type = findViewById(R.id.Type);
+        TextView zip = findViewById(R.id.Zip);
+        TextView address = findViewById(R.id.Address);
+        TextView city = findViewById(R.id.City);
+        TextView borough = findViewById(R.id.Borough);
+        TextView latitude = findViewById(R.id.Latitude);
+        TextView longitude = findViewById(R.id.Longitude);
 
-        map = (Button) findViewById(R.id.MapButton);
+        Button map = findViewById(R.id.MapButton);
 
-        nameTag = (TextView) findViewById(R.id.NameTag);
-        nameTag.setText("Name: ");
+        TextView nameTag = findViewById(R.id.NameTag);
+        //Commented out to avoid unnecessary warnings
+        //nameTag.setText("Name: ");
         Rat newRat = null;
-        b = this.getIntent().getExtras();
+        Bundle b = this.getIntent().getExtras();
         if (b != null) {
             newRat = b.getParcelable("rat");
             name.setText(newRat.getName());

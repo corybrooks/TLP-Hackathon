@@ -1,14 +1,11 @@
 package com.example.rickjames.eraticators.controller;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,21 +13,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
 import com.example.rickjames.eraticators.model.Rat;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,32 +30,25 @@ import java.util.Locale;
 
 public class UserActivity extends AppCompatActivity {
 
-    private Button signOutButton;
-    private Button addRatButton;
-    private Button startDateButton;
     private EditText startDateText;
-    private Button endDateButton;
     private EditText endDateText;
-    private Button updateRatsButton;
     private boolean first;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private LinearLayoutManager mLinearLayoutManager;
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference ratRef = database
             .getReference().child("RAT_TABLE");
 
     private FirebaseRecyclerAdapter<Rat, ratViewHolder> firebaseRecyclerAdapter;
     private FirebaseRecyclerAdapter<Rat, ratViewHolder> updateAdapter;
 
-    private Query query = FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(30);
+    private final Query query = FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(30);
 
-    private FirebaseRecyclerOptions<Rat> options =
+    private final FirebaseRecyclerOptions<Rat> options =
             new FirebaseRecyclerOptions.Builder<Rat>()
                     .setQuery(query, Rat.class)
                     .build();
@@ -88,18 +73,18 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.RatList);
-        mLinearLayoutManager = new LinearLayoutManager(this);
+        RecyclerView mRecyclerView = findViewById(R.id.RatList);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        signOutButton = (Button) findViewById(R.id.SignOut);
-        addRatButton = (Button) findViewById(R.id.AddRat);
-        updateRatsButton = (Button) findViewById(R.id.updateRats);
+        Button signOutButton = findViewById(R.id.SignOut);
+        Button addRatButton = findViewById(R.id.AddRat);
+        Button updateRatsButton = findViewById(R.id.updateRats);
 
-        startDateButton = (Button) findViewById(R.id.startDate);
-        startDateText = (EditText) findViewById(R.id.startDateText);
-        endDateButton = (Button) findViewById(R.id.endDate);
-        endDateText = (EditText) findViewById(R.id.endDateText);
+        Button startDateButton = findViewById(R.id.startDate);
+        startDateText = findViewById(R.id.startDateText);
+        Button endDateButton = findViewById(R.id.endDate);
+        endDateText = findViewById(R.id.endDateText);
 
         firebaseRecyclerAdapter =  new FirebaseRecyclerAdapter<Rat, ratViewHolder>(options) {
             @Override
@@ -109,8 +94,8 @@ public class UserActivity extends AppCompatActivity {
                 View view = LayoutInflater.from(parent.getContext())
                         .inflate(R.layout.rat_row, parent, false);
 
-                final ratViewHolder viewHolder = new ratViewHolder(view);
-                return viewHolder;
+
+                return new ratViewHolder(view);
             }
 
             @Override
@@ -151,17 +136,13 @@ public class UserActivity extends AppCompatActivity {
         });
 
         updateRatsButton.setOnClickListener(new View.OnClickListener() {
-            ArrayList<String> ratPosList = new ArrayList<String>();
+            ArrayList<String> ratPosList = new ArrayList<>();
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(UserActivity.this, GraphActivity.class);
                 finish();
                 startActivity(intent);
-                return;
-
-
-
 
                 /*final ArrayList<String> ratPosList = new ArrayList<String>();
 
@@ -297,12 +278,12 @@ public class UserActivity extends AppCompatActivity {
      * bind the rat_name to the cards in the RecyclerView.
      */
     public static class ratViewHolder extends RecyclerView.ViewHolder {
-        private TextView ratName;
-        private View mView;
+        private final TextView ratName;
+        private final View mView;
 
         public ratViewHolder(View itemView) {
             super(itemView);
-            ratName = (TextView) itemView.findViewById(R.id.rat_name);
+            ratName = itemView.findViewById(R.id.rat_name);
             mView = itemView;
         }
 

@@ -19,7 +19,6 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,16 +33,13 @@ import java.util.TreeMap;
 
 public class GraphActivity extends AppCompatActivity {
 
-    private Button startDateButton;
     private EditText startDateText;
-    private Button endDateButton;
     private EditText endDateText;
-    private Button graphRatsButton;
     private GraphView graph;
     private Map<String,Integer> map;
     private DataPoint[] dataPoints;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference daysRef = database
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference daysRef = database
             .getReference().child("DAYS_TABLE");
     //private Query query = daysRef.startAt(startDateText.getText().toString()).endAt(endDateText.getText().toString());
 
@@ -52,14 +48,14 @@ public class GraphActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-        graph = (GraphView) findViewById(R.id.graph);
+        graph = findViewById(R.id.graph);
 
-        startDateButton = (Button) findViewById(R.id.startDate);
-        startDateText = (EditText) findViewById(R.id.startDateText);
-        endDateButton = (Button) findViewById(R.id.endDate);
-        endDateText = (EditText) findViewById(R.id.endDateText);
-        graphRatsButton = (Button) findViewById(R.id.graphRats);
-        final Map<String, Integer> ratCounter = new HashMap<String, Integer>();
+        Button startDateButton = findViewById(R.id.startDate);
+        startDateText = findViewById(R.id.startDateText);
+        Button endDateButton = findViewById(R.id.endDate);
+        endDateText = findViewById(R.id.endDateText);
+        Button graphRatsButton = findViewById(R.id.graphRats);
+        final Map<String, Integer> ratCounter = new HashMap<>();
         final boolean[] doneCounting = {false};
 
 
@@ -77,7 +73,7 @@ public class GraphActivity extends AppCompatActivity {
                 while(!doneCounting[0]) {
 
                 }
-                map = new TreeMap<String,Integer>(ratCounter);
+                map = new TreeMap<>(ratCounter);
             }
 
             @Override
@@ -99,8 +95,8 @@ public class GraphActivity extends AppCompatActivity {
                 String endText = endDateText.getText().toString();
                 String newEnd = endText.substring(6) + "-" + endText.substring(0,2) + "-" + endText.substring(3,5);
 
-                SimpleDateFormat sd1 = new SimpleDateFormat("yyyy-MM-dd");
-                ArrayList<DataPoint> dataPointsAL = new ArrayList<DataPoint>();
+                SimpleDateFormat sd1 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+                ArrayList<DataPoint> dataPointsAL = new ArrayList<>();
                 Date startDate = null;
                 Date endDate = null;
                 try {
@@ -175,9 +171,7 @@ public class GraphActivity extends AppCompatActivity {
                 else {
                     endDateText.setText(sdf.format(myCalendar.getTime()));
                 }
-
             }
-
         };
         startDateButton.setOnClickListener(new View.OnClickListener() {
             @Override

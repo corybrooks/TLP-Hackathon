@@ -47,7 +47,6 @@
     <EditText
         android:id="@+id/startDateText"
         android:clickable="true"
-        android:editable="false"
         android:hint="Start Date"
         android:layout_toRightOf="@+id/startDate"
         android:layout_height="wrap_content"
@@ -63,7 +62,6 @@
     <EditText
         android:id="@+id/endDateText"
         android:clickable="true"
-        android:editable="false"
         android:hint="End Date"
         android:layout_toRightOf="@+id/endDate"
         android:layout_below="@+id/startDateText"

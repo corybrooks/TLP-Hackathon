@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
@@ -27,18 +26,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private EditText inputtedEmail;
     private EditText inputtedPassword;
-    private EditText inputtedName;
     private Spinner userSpinner;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference userRef = database.getReference("USER_TABLE");
-
-
-
-    private Button signupButton;
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference userRef = database.getReference("USER_TABLE");
 
 
     @Override
@@ -46,8 +40,8 @@ public class RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        userSpinner = (Spinner) findViewById(R.id.userType);
-        signupButton = (Button) findViewById(R.id.SignUp);
+        userSpinner = findViewById(R.id.userType);
+        Button signupButton = findViewById(R.id.SignUp);
         final String userEmail;
         final String userPassword;
 
@@ -56,10 +50,13 @@ public class RegistrationActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String userEmail = inputtedEmail.getText().toString();
-                String userPassword = inputtedPassword.getText().toString();
-                signUp(userEmail,userPassword);
+                if (inputtedEmail.getText().toString().equals("") || inputtedPassword.getText().toString().equals("")) {
+                    Toast.makeText(RegistrationActivity.this, "Email or Password is null" , Toast.LENGTH_LONG).show();
+                } else {
+                    String userEmail = inputtedEmail.getText().toString();
+                    String userPassword = inputtedPassword.getText().toString();
+                    signUp(userEmail,userPassword);
+                }
             }
         });
 
@@ -85,8 +82,8 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         };
 
-        inputtedEmail = (EditText) findViewById(R.id.inputtedEmail);
-        inputtedPassword = (EditText) findViewById(R.id.inputtedPassword);
+        inputtedEmail = findViewById(R.id.inputtedEmail);
+        inputtedPassword = findViewById(R.id.inputtedPassword);
     }
 
     @Override
@@ -108,7 +105,7 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param email The new users email.
      * @param password The new users password
      */
-    public void signUp(final String email, final String password) {
+    private void signUp(final String email, final String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     public static final String TAG = "";
@@ -136,22 +133,26 @@ public class RegistrationActivity extends AppCompatActivity {
      * @param email The new users email.
      * @param password The new users password.
      */
-    public void createUser(String email, String password) {
+    private void createUser(String email, String password) {
         final String userName;
         final UserType newUserType;
-        inputtedName = (EditText) findViewById(R.id.Names);
+        EditText inputtedName = findViewById(R.id.Names);
         userName = inputtedName.getText().toString();
-        userSpinner = (Spinner) findViewById(R.id.userType);
-        newUserType = (UserType) userSpinner.getSelectedItem();
-        User newUser = new User(userName, newUserType, email, password);
-        addUserToDatabase(newUser);
+        if (userName.equals("")) {
+
+        } else {
+            userSpinner = findViewById(R.id.userType);
+            newUserType = (UserType) userSpinner.getSelectedItem();
+            User newUser = new User(userName, newUserType, email, password);
+            addUserToDatabase(newUser);
+        }
     }
 
     /**
      * Adds the new user's information to the database.
      * @param newUser The instance of the new user.
      */
-    public void addUserToDatabase(User newUser) {
+    private void addUserToDatabase(User newUser) {
         FirebaseUser userID = FirebaseAuth.getInstance().getCurrentUser();
         if (userID != null) {
             DatabaseReference childRef = userRef.child(userID.getUid());

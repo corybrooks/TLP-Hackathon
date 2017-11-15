@@ -10,7 +10,7 @@ public enum UserType implements Serializable {
     USER("User"),
     ADMIN("Admin");
 
-    private String userType;
+    private final String userType;
 
     /**
      * Contructor for UserType enum

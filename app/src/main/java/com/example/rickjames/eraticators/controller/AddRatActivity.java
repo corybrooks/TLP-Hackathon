@@ -16,10 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static com.example.rickjames.eraticators.R.id.add;
-import static com.example.rickjames.eraticators.R.id.inputtedEmail;
-import static com.example.rickjames.eraticators.R.id.inputtedPassword;
-
 public class AddRatActivity extends AppCompatActivity {
 
     private EditText address;
@@ -34,30 +30,26 @@ public class AddRatActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ratTable = database.getReference().child("RAT_TABLE");
-
-
-    private Button addButton;
-    private Button cancelButton;
+    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private final DatabaseReference ratTable = database.getReference().child("RAT_TABLE");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rat);
-        addButton = (Button) findViewById(R.id.addRat);
-        cancelButton = (Button) findViewById(R.id.cancelButton);
+        Button addButton = findViewById(R.id.addRat);
+        Button cancelButton = findViewById(R.id.cancelButton);
 
-        address = (EditText) findViewById(R.id.inputtedAddress);
-        borough = (EditText) findViewById(R.id.inputtedBorough);
-        city = (EditText) findViewById(R.id.inputtedCity);
-        date = (EditText) findViewById(R.id.inputtedDate);
-        latitude = (EditText) findViewById(R.id.inputtedLatitude);
-        longitude = (EditText) findViewById(R.id.inputtedLongitude);
-        name = (EditText) findViewById(R.id.inputtedName);
-        type = (EditText) findViewById(R.id.inputtedType);
-        zip = (EditText) findViewById(R.id.inputtedZip);
+        address = findViewById(R.id.inputtedAddress);
+        borough = findViewById(R.id.inputtedBorough);
+        city = findViewById(R.id.inputtedCity);
+        date = findViewById(R.id.inputtedDate);
+        latitude = findViewById(R.id.inputtedLatitude);
+        longitude = findViewById(R.id.inputtedLongitude);
+        name = findViewById(R.id.inputtedName);
+        type = findViewById(R.id.inputtedType);
+        zip = findViewById(R.id.inputtedZip);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +128,7 @@ public class AddRatActivity extends AppCompatActivity {
     }
 
 
-    public void addNewRat(String address, String borough, String city, String date, String latitude, String longitude, String name, String type, String zip) {
+    private void addNewRat(String address, String borough, String city, String date, String latitude, String longitude, String name, String type, String zip) {
         DatabaseReference curRat = ratTable.child(name);
         curRat.setValue(name);
 

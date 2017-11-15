@@ -14,7 +14,7 @@ public class User {
     private String email;
     private String password;
 
-    public static List<UserType> legalUser = Arrays.asList(UserType.values());
+    private static final List<UserType> legalUser = Arrays.asList(UserType.values());
 
     /**
      * Contructor to create a new user

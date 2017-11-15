@@ -28,7 +28,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    final int RC_SIGN_IN = 1;
+    private final int RC_SIGN_IN = 1;
     private FirebaseAuth mAuth;
     private View vG;
 
@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Button signIn = (Button) findViewById(R.id.SignIn);
-        final Button signUp = (Button) findViewById(R.id.SignUp);
-        final SignInButton googleButton = (SignInButton) findViewById(R.id.GoogleButton);
+        final Button signIn = findViewById(R.id.SignIn);
+        final Button signUp = findViewById(R.id.SignUp);
+        final SignInButton googleButton = findViewById(R.id.GoogleButton);
 
         final GoogleApiClient mGoogleApiClient;
         mAuth = FirebaseAuth.getInstance();

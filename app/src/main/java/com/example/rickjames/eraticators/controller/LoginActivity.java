@@ -11,14 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.rickjames.eraticators.R;
-import com.example.rickjames.eraticators.model.Rat;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity  {
 
@@ -28,19 +25,17 @@ public class LoginActivity extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private Button loginButton;
     private Button signupButton;
-    private Button forgotButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final String TAG = "";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginButton = (Button) findViewById(R.id.SignIn);
+        Button loginButton = findViewById(R.id.SignIn);
         final String userEmail;
         final String userPassword;
-        forgotButton = (Button) findViewById(R.id.ForgotPassword);
+        Button forgotButton = findViewById(R.id.ForgotPassword);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,8 +85,8 @@ public class LoginActivity extends AppCompatActivity  {
             }
         };
 
-        inputtedEmail = (EditText) findViewById(R.id.inputtedEmail);
-        inputtedPassword = (EditText) findViewById(R.id.inputtedPassword);
+        inputtedEmail = findViewById(R.id.inputtedEmail);
+        inputtedPassword = findViewById(R.id.inputtedPassword);
     }
 
     @Override
@@ -115,7 +110,7 @@ public class LoginActivity extends AppCompatActivity  {
      * @param email The users email.
      * @param password The users password.
      */
-    public void signIn(final String email, String password) {
+    private void signIn(final String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     public static final String TAG = "";
@@ -138,7 +133,6 @@ public class LoginActivity extends AppCompatActivity  {
                             startActivity(intent);
                         }
 
-                        // ...
                     }
                 });
     }
