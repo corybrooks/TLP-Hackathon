@@ -55,31 +55,31 @@ public class loginActivityTest {
                 .check(matches(isDisplayed()));
     }
 
-//    @Test
-//    public void CheckLoginUserEmailNull() {
-//        onView(withId(R.id.inputtedPassword)).perform(typeText("bootybutt"), closeSoftKeyboard());
-//        onView(withId(R.id.SignIn)).perform(click());
-//        onView(withText("Error logging in. No username detected."))
-//                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-//    }
-//
-//    @Test
-//    public void CheckLoginUserPasswordNull() {
-//        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
-//        onView(withId(R.id.SignIn)).perform(click());
-//        onView(withText("Error logging in. No password detected."))
-//                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-//    }
-//
-//    @Test
-//    public void CheckLoginUserPasswordIncorrect() {
-//        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
-//        onView(withId(R.id.inputtedPassword)).perform(typeText("booootybutt"), closeSoftKeyboard());
-//        onView(withId(R.id.SignIn)).perform(click());
-//        onView(withText("Error logging in. Incorrect password detected."))
-//                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-//    }
+    @Test
+    public void CheckLoginUserEmailNull() {
+        onView(withId(R.id.inputtedPassword)).perform(typeText("bootybutt"), closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Error logging in. Must input username and password."))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void CheckLoginUserPasswordNull() {
+        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Error logging in. Must input password."))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void CheckLoginUserPasswordIncorrect() {
+        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedPassword)).perform(typeText("booootybutt"), closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Authentication failed."))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
 }
