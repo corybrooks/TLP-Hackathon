@@ -25,7 +25,7 @@ import static org.hamcrest.Matchers.not;
 public class graphRatTest {
 
     @Rule
-    public IntentsTestRule<GraphActivity> mActivityRule = new IntentsTestRule<>(GraphActivity.class);
+    public final IntentsTestRule<GraphActivity> mActivityRule = new IntentsTestRule<>(GraphActivity.class);
 
     @Test
     public void checkGotSnapshots() {
