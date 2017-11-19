@@ -27,7 +27,7 @@ public class Rat implements Parcelable {
      * @param city city rat is in
      * @param borough borough rat is in
      * @param latitude latitude position of rat
-     * @param longitude longitude postion of rat
+     * @param longitude longitude position of rat
      */
     public Rat(String name, String date, String type, String zip, String address,
                String city, String borough, String latitude, String longitude) {
@@ -39,78 +39,6 @@ public class Rat implements Parcelable {
         this.city = city;
         this.borough = borough;
         this.latitude = latitude;
-        this.longitude = longitude;
-    }
-
-    /**
-     *
-     * @param name the rat's name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     *
-     * @param date the rat's created date
-     */
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    /**
-     *
-     * @param type the rat's address type
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    /**
-     *
-     * @param zip the rat's address zip code
-     */
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
-
-    /**
-     *
-     * @param address the rat's address
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    /**
-     *
-     * @param city the rat's city
-     */
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    /**
-     *
-     * @param borough the rat's borough
-     */
-    public void setBorough(String borough) {
-        this.borough = borough;
-    }
-
-    /**
-     *
-     * @param latitude the rat's latitude position
-     */
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
-    /**
-     *
-     * @param longitude the rat's longitude position
-     */
-    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 

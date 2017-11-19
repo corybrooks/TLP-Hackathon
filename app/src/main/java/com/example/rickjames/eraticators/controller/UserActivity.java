@@ -19,32 +19,22 @@ import com.example.rickjames.eraticators.model.Rat;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+
+
+
 
 public class UserActivity extends AppCompatActivity {
 
     private EditText startDateText;
     private EditText endDateText;
-    private boolean first;
-
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
-    private RecyclerView.LayoutManager mLayoutManager;
-
-    private final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference ratRef = database
-            .getReference().child("RAT_TABLE");
 
     private FirebaseRecyclerAdapter<Rat, ratViewHolder> firebaseRecyclerAdapter;
-    private FirebaseRecyclerAdapter<Rat, ratViewHolder> updateAdapter;
 
     private final Query query = FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(30);
 
@@ -53,22 +43,15 @@ public class UserActivity extends AppCompatActivity {
                     .setQuery(query, Rat.class)
                     .build();
 
-    private Query filtQuery;
-    private FirebaseRecyclerOptions<Rat> filtOptions;
-
-    private String passName, passDate, passType, passZip, passAddress, passCity, passBorough, passLatitude, passLongitude;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        //String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
-        String x = getIntent().getStringExtra("newFirst");
-        if (getIntent().getStringExtra("newFirst") == "false") {
-                FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(5);
-        }
+//        String x = getIntent().getStringExtra("newFirst");
+//        if (getIntent().getStringExtra("newFirst").equals("false")) {
+//                FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(5);
+//        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
@@ -136,74 +119,12 @@ public class UserActivity extends AppCompatActivity {
         });
 
         updateRatsButton.setOnClickListener(new View.OnClickListener() {
-            ArrayList<String> ratPosList = new ArrayList<>();
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent(UserActivity.this, GraphActivity.class);
                 finish();
                 startActivity(intent);
-
-                /*final ArrayList<String> ratPosList = new ArrayList<String>();
-
-                query = ratRef.
-                        orderByChild("date").
-                        startAt(startDateText.getText().toString()).
-                        endAt(endDateText.getText().toString()).limitToLast(30);
-
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot snap : dataSnapshot.getChildren()) {
-                                ratPosList.add(snap.getKey());
-                                Log.i("begin:"+snap.getKey(), "Here");
-                            }
-                        } else {
-                            Log.i("no exist", "no Exist");
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-                options =
-                        new FirebaseRecyclerOptions.Builder<Rat>()
-                                .setQuery(query, Rat.class)
-                                .build();
-
-                updateAdapter =  new FirebaseRecyclerAdapter<Rat, ratViewHolder>(options) {
-                    @Override
-                    public ratViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                        // Create a new instance of the ViewHolder, in this case we are using a custom
-                        // layout called R.layout.message for each item
-                        View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.rat_row, parent, false);
-
-                        return new ratViewHolder(view);
-                    }
-
-                    @Override
-                    protected void onBindViewHolder(ratViewHolder holder, int position, final Rat model) {
-                        holder.ratName.setText(model.getName());
-                        View v = holder.getView();
-                        v.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Bundle b = new Bundle();
-                                b.putParcelable("rat", model);
-                                Intent intent = new Intent(UserActivity.this, RatActivity.class);
-                                intent.putExtras(b);
-                                startActivity(intent);
-                            }
-                        });
-                    }
-                };
-                mRecyclerView.setAdapter(updateAdapter);*/
-                //firebaseRecyclerAdapter.notifyDataSetChanged();
             }
         });
 
@@ -226,7 +147,7 @@ public class UserActivity extends AppCompatActivity {
             private void updateLabel() {
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                if (whichDate[0] == "START") {
+                if (whichDate[0].equals("START")) {
                     startDateText.setText(sdf.format(myCalendar.getTime()));
                 }
                 else {
@@ -288,7 +209,7 @@ public class UserActivity extends AppCompatActivity {
         }
 
         /**
-         * This is necessary in order to recieve the view and pass the model to the new view!!
+         * This is necessary in order to receive the view and pass the model to the new view!!
          * @return the view
          */
         public View getView() {

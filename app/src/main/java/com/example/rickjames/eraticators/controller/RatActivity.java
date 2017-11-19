@@ -12,8 +12,6 @@ import android.widget.Toast;
 import com.example.rickjames.eraticators.R;
 import com.example.rickjames.eraticators.model.Rat;
 
-import java.util.Locale;
-
 public class RatActivity extends AppCompatActivity {
 
 //    key, date, type, zip, address, city, borough, latitude, Longitude
@@ -35,22 +33,27 @@ public class RatActivity extends AppCompatActivity {
 
         Button map = findViewById(R.id.MapButton);
 
-        TextView nameTag = findViewById(R.id.NameTag);
+        //TextView nameTag = findViewById(R.id.NameTag);
         //Commented out to avoid unnecessary warnings
         //nameTag.setText("Name: ");
         Rat newRat = null;
         Bundle b = this.getIntent().getExtras();
         if (b != null) {
             newRat = b.getParcelable("rat");
-            name.setText(newRat.getName());
-            date.setText(newRat.getDate());
-            type.setText(newRat.getType());
-            zip.setText(newRat.getZip());
-            address.setText(newRat.getAddress());
-            city.setText(newRat.getCity());
-            borough.setText(newRat.getBorough());
-            latitude.setText(newRat.getLatitude());
-            longitude.setText(newRat.getLongitude());
+            if (newRat != null && newRat.getName() != null && newRat.getDate() != null && newRat.getType() != null &&
+                    newRat.getZip() != null && newRat.getAddress() != null && newRat.getCity() !=
+                    null && newRat.getBorough() != null && newRat.getLatitude() != null &&
+                    newRat.getLongitude() != null) {
+                name.setText(newRat.getName());
+                date.setText(newRat.getDate());
+                type.setText(newRat.getType());
+                zip.setText(newRat.getZip());
+                address.setText(newRat.getAddress());
+                city.setText(newRat.getCity());
+                borough.setText(newRat.getBorough());
+                latitude.setText(newRat.getLatitude());
+                longitude.setText(newRat.getLongitude());
+            }
         }
         final Rat finalNewRat = newRat;
         map.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +61,7 @@ public class RatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    String uri = String.format(Locale.ENGLISH, "geo:%f,%f", Float.parseFloat(finalNewRat.getLatitude()), Float.parseFloat(finalNewRat.getLongitude()));
+                    //String uri = String.format(Locale.ENGLISH, "geo:%f,%f", Float.parseFloat(finalNewRat.getLatitude()), Float.parseFloat(finalNewRat.getLongitude()));
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:<" + Float.parseFloat(finalNewRat.getLatitude())  +
                             ">,<" + Float.parseFloat(finalNewRat.getLongitude()) + ">?q=<" +
                             Float.parseFloat(finalNewRat.getLatitude())  + ">,<" +

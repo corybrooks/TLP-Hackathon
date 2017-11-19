@@ -25,7 +25,6 @@ public class LoginActivity extends AppCompatActivity  {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
-    private Button signupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +32,8 @@ public class LoginActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Button loginButton = findViewById(R.id.SignIn);
-        final String userEmail;
-        final String userPassword;
+//        final String userEmail;
+//        final String userPassword;
         Button forgotButton = findViewById(R.id.ForgotPassword);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +81,7 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                String TAG = null;
+                String TAG = "User";
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());

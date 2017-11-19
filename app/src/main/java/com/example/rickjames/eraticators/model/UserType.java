@@ -13,7 +13,7 @@ public enum UserType implements Serializable {
     private final String userType;
 
     /**
-     * Contructor for UserType enum
+     * Constructor for UserType enum
      * @param userType sets the user's initial type
      */
     UserType(String userType) {

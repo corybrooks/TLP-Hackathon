@@ -1,5 +1,6 @@
 package com.example.rickjames.eraticators;
 
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -225,7 +226,7 @@ public class addRatActivityTest {
         onView(withId(R.id.addRat)).perform(ViewActions.scrollTo()).perform(click());
 
         intended(hasComponent(UserActivity.class.getName()));
-
+        Espresso.pressBack();
         onView(withId(R.id.AddRat)).perform(click());
 
 

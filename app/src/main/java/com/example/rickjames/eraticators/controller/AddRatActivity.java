@@ -71,8 +71,8 @@ public class AddRatActivity extends AppCompatActivity {
                     Toast.makeText(AddRatActivity.this, "One Value is empty" , Toast.LENGTH_LONG).show();
                 } else {
                     try {
-                        float lat = Float.parseFloat(latitudeText);
-                        float lon = Float.parseFloat(longitudeText);
+                        //float lat = Float.parseFloat(latitudeText);
+                        //float lon = Float.parseFloat(longitudeText);
                         addNewRat(addressText,boroughText,cityText,dateText,latitudeText,longitudeText,nameText,typeText,zipText);
                         Intent intent = new Intent(AddRatActivity.this, UserActivity.class);
                         finish();
@@ -98,13 +98,13 @@ public class AddRatActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                String TAG = null;
+                //String TAG = null;
                 if (user != null) {
                     // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    Log.d(null, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
                     // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    Log.d(null, "onAuthStateChanged:signed_out");
                 }
             }
         };
@@ -132,7 +132,7 @@ public class AddRatActivity extends AppCompatActivity {
         DatabaseReference curRat = ratTable.child(name);
         curRat.setValue(name);
 
-        DatabaseReference addressRef = curRat.child("address");
+        //DatabaseReference addressRef = curRat.child("address");
         ratTable.child(name).child("address").setValue(address);
 
 

@@ -56,7 +56,7 @@ public class GraphActivity extends AppCompatActivity {
         endDateText = findViewById(R.id.endDateText);
         Button graphRatsButton = findViewById(R.id.graphRats);
         final Map<String, Integer> ratCounter = new HashMap<>();
-        final boolean[] doneCounting = {false};
+        //final boolean[] doneCounting = {false};
 
 
         daysRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -69,10 +69,10 @@ public class GraphActivity extends AppCompatActivity {
                     //ratCounter.put(key, (int) (long) d.getChildrenCount());
                     ratCounter.put(newDate, (int) (long) d.getChildrenCount());
                 }
-                doneCounting[0] = true;
-                while(!doneCounting[0]) {
-
-                }
+//                doneCounting[0] = true;
+//                while(!doneCounting[0]) {
+//
+//                }
                 map = new TreeMap<>(ratCounter);
             }
 
@@ -116,7 +116,7 @@ public class GraphActivity extends AppCompatActivity {
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
-                    if (!curDate.before(startDate) && !curDate.after(endDate)) {
+                    if (curDate != null && !curDate.before(startDate) && !curDate.after(endDate)) {
                         dataPointsAL.add(new DataPoint(curDate, map.get(key)));
                     }
 
@@ -130,9 +130,10 @@ public class GraphActivity extends AppCompatActivity {
                 graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
                 graph.getGridLabelRenderer().setNumHorizontalLabels(dataPoints.length);
 
-
-                graph.getViewport().setMinX(startDate.getTime());
-                graph.getViewport().setMaxX(endDate.getTime());
+                if (startDate != null && endDate != null) {
+                    graph.getViewport().setMinX(startDate.getTime());
+                    graph.getViewport().setMaxX(endDate.getTime());
+                }
                 graph.getViewport().setXAxisBoundsManual(true);
                 graph.getViewport().setScalable(true);
                 graph.getViewport().setScalableY(true);
@@ -165,7 +166,7 @@ public class GraphActivity extends AppCompatActivity {
             private void updateLabel() {
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                if (whichDate[0] == "START") {
+                if (whichDate[0].equals("START")) {
                     startDateText.setText(sdf.format(myCalendar.getTime()));
                 }
                 else {

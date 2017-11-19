@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 .enableAutoManage(this,new GoogleApiClient.OnConnectionFailedListener(){
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Toast.makeText(MainActivity.this, "Google signin failed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Google sign-in failed", Toast.LENGTH_LONG).show();
                     }
                 }).addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
@@ -99,9 +99,6 @@ public class MainActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-            } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
             }
         }
     }
@@ -117,9 +114,8 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(vG.getContext(), UserActivity.class);
-                            Toast.makeText(MainActivity.this, "Welcome "+FirebaseAuth.getInstance().getCurrentUser().getDisplayName(), Toast.LENGTH_LONG).show();
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
