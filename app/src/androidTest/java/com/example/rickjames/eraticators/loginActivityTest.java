@@ -57,7 +57,7 @@ public class loginActivityTest {
 
     @Test
     public void CheckLoginUserEmailNull() {
-        onView(withId(R.id.inputtedPassword)).perform(typeText("bootybutt"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedPassword)).perform(typeText("testtest"), closeSoftKeyboard());
         onView(withId(R.id.SignIn)).perform(click());
         onView(withText("Error logging in. Must input username and password."))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
@@ -66,7 +66,7 @@ public class loginActivityTest {
 
     @Test
     public void CheckLoginUserPasswordNull() {
-        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedEmail)).perform(typeText("testemail@gmail.com"), closeSoftKeyboard());
         onView(withId(R.id.SignIn)).perform(click());
         onView(withText("Error logging in. Must input password."))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
@@ -75,10 +75,20 @@ public class loginActivityTest {
 
     @Test
     public void CheckLoginUserPasswordIncorrect() {
-        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
-        onView(withId(R.id.inputtedPassword)).perform(typeText("booootybutt"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedEmail)).perform(typeText("testemail@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedPassword)).perform(typeText("testestest"), closeSoftKeyboard());
         onView(withId(R.id.SignIn)).perform(click());
         onView(withText("Authentication failed."))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void CheckLoginCorrect() {
+        onView(withId(R.id.inputtedEmail)).perform(typeText("testemail@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedPassword)).perform(typeText("testtest"), closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Welcome testemail@gmail.com"))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
