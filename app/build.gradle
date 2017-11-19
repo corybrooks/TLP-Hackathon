@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.example.rickjames.eraticators"
         minSdkVersion 15
@@ -28,6 +28,18 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-intents:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:2.2.2") {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'support-v7'
+        exclude group: 'com.android.support', module: 'design'
+        exclude module: 'support-annotations'
+        exclude module: 'recyclerview-v7'
+    }
+
+
+
 
     compile 'com.android.support:support-annotations:26.1.0'
 
