@@ -78,15 +78,15 @@ public class UserActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-
-        String x = getIntent().getStringExtra("newFirst");
-        if (getIntent().getStringExtra("newFirst") == "false") {
-                FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(5);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+//        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+//
+//        String x = getIntent().getStringExtra("newFirst");
+//        if (getIntent().getStringExtra("newFirst") == "false") {
+//            FirebaseDatabase.getInstance().getReference().child("RAT_TABLE").limitToLast(5);
+//        }
 
         mRecyclerView = (RecyclerView) findViewById(R.id.RatList);
         mLinearLayoutManager = new LinearLayoutManager(this);
