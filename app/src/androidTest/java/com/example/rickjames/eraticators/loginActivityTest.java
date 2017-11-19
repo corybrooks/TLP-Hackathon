@@ -16,7 +16,7 @@ import android.support.test.rule.ActivityTestRule;
 import com.example.rickjames.eraticators.controller.AddRatActivity;
 import com.example.rickjames.eraticators.controller.RatActivity;
 import com.example.rickjames.eraticators.controller.UserActivity;
-import com.example.rickjames.eraticators.controller.RegistrationActivity;
+import com.example.rickjames.eraticators.controller.LoginActivity;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -40,18 +40,45 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
 /**
- * Created by christinefeng on 11/14/17.
+ * Created by Josep on 11/14/2017.
  */
-
 @RunWith(AndroidJUnit4.class)
-public class signInTest {
+public class loginActivityTest {
     @Rule
-    public IntentsTestRule<RegistrationActivity> mActivityRule = new IntentsTestRule<>(RegistrationActivity.class);
+    public IntentsTestRule<LoginActivity> mActivityRule = new IntentsTestRule<>(LoginActivity.class);
 
     @Test
-    public void CheckNull() {
-        onView(withId(R.id.SignUp)).perform(click());
-        onView(withText("Email and/or password cannot be empty."))
+    public void CheckLoginNull() {
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Error logging in. Must input username and password."))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void CheckLoginUserEmailNull() {
+        onView(withId(R.id.inputtedPassword)).perform(typeText("bootybutt"), closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Error logging in. Must input username and password."))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void CheckLoginUserPasswordNull() {
+        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Error logging in. Must input password."))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void CheckLoginUserPasswordIncorrect() {
+        onView(withId(R.id.inputtedEmail)).perform(typeText("joephobic@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedPassword)).perform(typeText("booootybutt"), closeSoftKeyboard());
+        onView(withId(R.id.SignIn)).perform(click());
+        onView(withText("Authentication failed."))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
