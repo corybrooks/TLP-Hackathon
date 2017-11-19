@@ -56,10 +56,15 @@ public class RegistrationActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (inputtedEmail.getText().toString().equals("") || inputtedPassword.getText().toString().equals("")) {
+                    Toast.makeText(RegistrationActivity.this, "Email and/or password cannot be empty.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
 
-                String userEmail = inputtedEmail.getText().toString();
-                String userPassword = inputtedPassword.getText().toString();
-                signUp(userEmail,userPassword);
+                    String userEmail = inputtedEmail.getText().toString();
+                    String userPassword = inputtedPassword.getText().toString();
+                    signUp(userEmail, userPassword);
+                }
             }
         });
 
@@ -141,10 +146,15 @@ public class RegistrationActivity extends AppCompatActivity {
         final UserType newUserType;
         inputtedName = (EditText) findViewById(R.id.Names);
         userName = inputtedName.getText().toString();
-        userSpinner = (Spinner) findViewById(R.id.userType);
-        newUserType = (UserType) userSpinner.getSelectedItem();
-        User newUser = new User(userName, newUserType, email, password);
-        addUserToDatabase(newUser);
+        if (userName.equals("")) {
+            Toast.makeText(RegistrationActivity.this, "Name cannot be empty.",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            userSpinner = (Spinner) findViewById(R.id.userType);
+            newUserType = (UserType) userSpinner.getSelectedItem();
+            User newUser = new User(userName, newUserType, email, password);
+            addUserToDatabase(newUser);
+        }
     }
 
     /**

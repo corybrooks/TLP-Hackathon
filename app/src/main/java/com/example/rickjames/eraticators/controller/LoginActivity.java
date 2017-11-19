@@ -45,9 +45,17 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
 
-                String userEmail = inputtedEmail.getText().toString();
-                String userPassword = inputtedPassword.getText().toString();
-                signIn(userEmail,userPassword);
+                if (inputtedEmail.getText().toString().equals("")) {
+                    Toast.makeText(LoginActivity.this,"Error logging in. Must input username and password.", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (inputtedPassword.getText().toString().equals("")) {
+                        Toast.makeText(LoginActivity.this,"Error logging in. Must input password.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String userEmail = inputtedEmail.getText().toString();
+                        String userPassword = inputtedPassword.getText().toString();
+                        signIn(userEmail, userPassword);
+                    }
+                }
 
             }
         });
