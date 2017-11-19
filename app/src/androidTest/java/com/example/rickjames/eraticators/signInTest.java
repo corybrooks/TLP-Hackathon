@@ -50,7 +50,7 @@ public class signInTest {
 
     @Test
     public void CheckNull() {
-        onView(withId(R.id.SignUp)).perform(ViewActions.scrollTo()).perform(click());
+        onView(withId(R.id.SignUp)).perform(click());
         onView(withText("Email and/or password cannot be empty."))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
