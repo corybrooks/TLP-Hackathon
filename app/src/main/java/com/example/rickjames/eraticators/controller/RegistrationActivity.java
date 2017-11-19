@@ -171,6 +171,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
             DatabaseReference uidChildRef4 = childRef.child("userPassword");
             uidChildRef4.setValue(newUser.getPassword());
+
+            if (newUser.getUser().toString() == "Admin") {
+                Toast.makeText(RegistrationActivity.this, "Admin registration successful!",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(RegistrationActivity.this, "User registration successful!",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
