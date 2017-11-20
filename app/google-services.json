@@ -1,0 +1,87 @@
+{
+  "project_info": {
+    "project_number": "782651564720",
+    "firebase_url": "https://eraticators-73723.firebaseio.com",
+    "project_id": "eraticators-73723",
+    "storage_bucket": "eraticators-73723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782651564720:android:bf30796346d57d36",
+        "android_client_info": {
+          "package_name": "com.example.rickjames.eraticators"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782651564720-af9v10us3eh2j964jjfen3vthk2bfqdf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "3975c087c10b84c47ba14b5098eaccda71f8719d"
+          }
+        },
+        {
+          "client_id": "782651564720-anq8e5tp1imhgia2k0cvvpvk9qq5oshl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "6cda27d07af2c20e633c09dcfa154548160f81d1"
+          }
+        },
+        {
+          "client_id": "782651564720-e6u3r09v89o5edk1qdl9gk2153k2o3kd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "1ae5d9445d00c12be77d912a3c4cce71d59ad32f"
+          }
+        },
+        {
+          "client_id": "782651564720-7olje4tk33hqn5rsq1ac9753fg1a9fo0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "1edfa099c955efc4926504213c79444565c33425"
+          }
+        },
+        {
+          "client_id": "782651564720-t7er0658d55p2p2c7n6ftla9mgbh0019.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "c55fe94b75c77bfe4c9fb2d8b7b1fd42c757101d"
+          }
+        },
+        {
+          "client_id": "782651564720-8vkvtd9r4nt00qt9rsokdkt2vrmfphaq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxltDfNJvXMmwIqX9jjWZEHF8_-eguvDc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782651564720-8vkvtd9r4nt00qt9rsokdkt2vrmfphaq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
