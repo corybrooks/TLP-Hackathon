@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "782651564720",
+    "firebase_url": "https://eraticators-73723.firebaseio.com",
+    "project_id": "eraticators-73723",
+    "storage_bucket": "eraticators-73723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782651564720:android:bf30796346d57d36",
+        "android_client_info": {
+          "package_name": "com.example.rickjames.eraticators"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782651564720-t7er0658d55p2p2c7n6ftla9mgbh0019.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "c55fe94b75c77bfe4c9fb2d8b7b1fd42c757101d"
+          }
+        },
+        {
+          "client_id": "782651564720-8vkvtd9r4nt00qt9rsokdkt2vrmfphaq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxltDfNJvXMmwIqX9jjWZEHF8_-eguvDc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782651564720-8vkvtd9r4nt00qt9rsokdkt2vrmfphaq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
