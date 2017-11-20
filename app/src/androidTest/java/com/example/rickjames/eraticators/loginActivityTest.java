@@ -1,5 +1,6 @@
 package com.example.rickjames.eraticators;
 
+import android.support.test.espresso.Espresso;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -67,10 +68,10 @@ public class loginActivityTest {
 
     @Test
     public void CheckLoginCorrect() {
-        onView(withId(R.id.inputtedEmail)).perform(typeText("testemail@gmail.com"), closeSoftKeyboard());
-        onView(withId(R.id.inputtedPassword)).perform(typeText("testtest"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedEmail)).perform(typeText("jaja@gmail.com"), closeSoftKeyboard());
+        onView(withId(R.id.inputtedPassword)).perform(typeText("456456"), closeSoftKeyboard());
         onView(withId(R.id.SignIn)).perform(click());
-        onView(withText("Welcome testemail@gmail.com"))
+        onView(withText("Welcome jaja@gmail.com"))
                 .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
                 .check(matches(isDisplayed()));
     }
