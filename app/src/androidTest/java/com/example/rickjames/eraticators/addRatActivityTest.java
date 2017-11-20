@@ -226,7 +226,6 @@ public class addRatActivityTest {
         onView(withId(R.id.addRat)).perform(ViewActions.scrollTo()).perform(click());
 
         intended(hasComponent(UserActivity.class.getName()));
-        Espresso.pressBack();
         onView(withId(R.id.AddRat)).perform(click());
 
 

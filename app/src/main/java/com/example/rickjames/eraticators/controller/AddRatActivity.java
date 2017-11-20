@@ -71,8 +71,8 @@ public class AddRatActivity extends AppCompatActivity {
                     Toast.makeText(AddRatActivity.this, "One Value is empty" , Toast.LENGTH_LONG).show();
                 } else {
                     try {
-                        //float lat = Float.parseFloat(latitudeText);
-                        //float lon = Float.parseFloat(longitudeText);
+                        float lat = Float.parseFloat(latitudeText);
+                        float lon = Float.parseFloat(longitudeText);
                         addNewRat(addressText,boroughText,cityText,dateText,latitudeText,longitudeText,nameText,typeText,zipText);
                         Intent intent = new Intent(AddRatActivity.this, UserActivity.class);
                         finish();
