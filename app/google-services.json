@@ -15,6 +15,38 @@
       },
       "oauth_client": [
         {
+          "client_id": "782651564720-af9v10us3eh2j964jjfen3vthk2bfqdf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "3975c087c10b84c47ba14b5098eaccda71f8719d"
+          }
+        },
+        {
+          "client_id": "782651564720-anq8e5tp1imhgia2k0cvvpvk9qq5oshl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "6cda27d07af2c20e633c09dcfa154548160f81d1"
+          }
+        },
+        {
+          "client_id": "782651564720-e6u3r09v89o5edk1qdl9gk2153k2o3kd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "1ae5d9445d00c12be77d912a3c4cce71d59ad32f"
+          }
+        },
+        {
+          "client_id": "782651564720-7olje4tk33hqn5rsq1ac9753fg1a9fo0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rickjames.eraticators",
+            "certificate_hash": "1edfa099c955efc4926504213c79444565c33425"
+          }
+        },
+        {
           "client_id": "782651564720-t7er0658d55p2p2c7n6ftla9mgbh0019.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
