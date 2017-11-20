@@ -1,5 +1,6 @@
 package com.example.rickjames.eraticators;
 import android.support.test.espresso.Espresso;
+import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -31,40 +32,53 @@ public class UserActivityTest {
     public IntentsTestRule<UserActivity> mActivityRule = new IntentsTestRule<>(UserActivity.class);
 
 
-    @Test
-    public void CheckButtonPress() {
-        onView(withId(R.id.startDate)).perform(click());
-       // intended(hasComponent(RatActivity.class.getName()));
-        Espresso.pressBack();
-
-    }
-
-    @Test
-    public void CheckButtonPress2() {
-        onView(withId(R.id.endDate)).perform(click());
-        // intended(hasComponent(RatActivity.class.getName()));
-        Espresso.pressBack();
-
-    }
+//    @Test
+//    public void CheckButtonPress() {
+//        onView(withId(R.id.startDate)).perform(click());
+//       // intended(hasComponent(RatActivity.class.getName()));
+//        Espresso.pressBack();
+//
+//    }
+//
+//    @Test
+//    public void CheckButtonPress2() {
+//        onView(withId(R.id.endDate)).perform(click());
+//        // intended(hasComponent(RatActivity.class.getName()));
+//        Espresso.pressBack();
+//
+//    }
 
 
     @Test
     public void CheckButtonPress3() {
-        onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        int i = 0;
+        while (i < 500000000) {
+            i++;
+        }
+        onView(withId(R.id.RatList)).perform(RecyclerViewActions.scrollToPosition(4))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
+        int j = 0;
+        while (j < 500000000) {
+            j++;
+        }
         intended(hasComponent(RatActivity.class.getName()));
-        //Espresso.pressBack();
+        Espresso.pressBack();
+    }
+
+    @Test
+    public void CheckButtonPress4() {
+        int i = 0;
+        while (i < 500000000) {
+            i++;
+        }
+        onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
+        intended(hasComponent(RatActivity.class.getName()));
+        Espresso.pressBack();
     }
 //
-//
-//    public void CheckButtonPress3() {
-//        onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
-//        intended(hasComponent(RatActivity.class.getName()));
-//        Espresso.pressBack();
-//    }
-//
-//
-//    public void CheckButtonPress4() {
-//        onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(4, click()));
+//    @Test
+//    public void CheckButtonPress5() {
+//        onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(25, click()));
 //        intended(hasComponent(RatActivity.class.getName()));
 //        Espresso.pressBack();
 //    }
