@@ -50,17 +50,30 @@ public class UserActivityTest {
 
     @Test
     public void CheckButtonPress3() {
+        for(int i = 0; i < 500000000; i++) {
+
+        }
         onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        for(int i = 0; i < 500000000; i++) {
+
+        }
         intended(hasComponent(RatActivity.class.getName()));
-        //Espresso.pressBack();
+        Espresso.pressBack();
     }
-//
-//
-//    public void CheckButtonPress3() {
-//        onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(3, click()));
-//        intended(hasComponent(RatActivity.class.getName()));
-//        Espresso.pressBack();
-//    }
+
+    @Test
+    public void CheckButtonPress4() {
+        for(int i = 0; i < 500000000; i++) {
+
+        }
+
+        onView(withId(R.id.RatList)).perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        for(int i = 0; i < 500000000; i++) {
+
+        }
+        intended(hasComponent(RatActivity.class.getName()));
+        Espresso.pressBack();
+    }
 //
 //
 //    public void CheckButtonPress4() {
