@@ -70,11 +70,12 @@ public class loginActivityTest {
     }
 
     @Test
-    public void CheckLoginCorrect() {
+    public void zzzCheckLoginCorrect() {
         onView(withId(R.id.inputtedEmail)).perform(typeText("jaja@gmail.com"), closeSoftKeyboard());
         onView(withId(R.id.inputtedPassword)).perform(typeText("456456"), closeSoftKeyboard());
         onView(withId(R.id.SignIn)).perform(click());
-
-        intended(hasComponent(UserActivity.class.getName()));
+        onView(withText("Welcome jaja@gmail.com"))
+                .inRoot(withDecorView(not(mActivityRule.getActivity().getWindow().getDecorView())))
+                .check(matches(isDisplayed()));
     }
 }
